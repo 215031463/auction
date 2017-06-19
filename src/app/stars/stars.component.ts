@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StarsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private
+  ) { }
 
   ngOnInit() {
   }
