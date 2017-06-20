@@ -1,4 +1,4 @@
 <p>
-  <span class="pull-right">{{ 5.0 }}</span>
-  <span class="glyphicon glyphicon-star"></span>
+  <span class="pull-right">{{ rating }}</span>
+  <span *ngFor="let star of stars" [class.glyphicon-star-empty]="!star" class="glyphicon glyphicon-star"></span>
 </p>
