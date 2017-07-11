@@ -1,0 +1,27 @@
+<div class="product-details">
+  <div class="thumbnail">
+    <div>
+      <img src="http://www.placehold.it/820x230" alt="图片">
+      <h3 class="pull-right">{{ product?.price }} 元</h3>
+      <h2>{{ product?.pname }}</h2>
+      <p>{{ product?.desc }}</p>
+    </div>
+    <div>
+      <p class="pull-right">{{ comments?.length }}</p>
+      <div>
+        <app-stars [rating]="product.rating"></app-stars>
+      </div>
+    </div>
+  </div>
+
+  <div class="well clearFloat" *ngFor="let comment of comments; let idx = index;">
+    <app-stars [rating]="comment.rating"></app-stars>
+    <div class="pull-right">
+      <span>{{ idx + 1 }}楼</span>
+      <span>{{ comment.user }}</span>
+      <br>
+      <span>{{ comment.timestamp }}</span>
+    </div>
+    <p [style.text-indent]="'2rem'">{{ comment.content }}</p>
+  </div>
+</div>

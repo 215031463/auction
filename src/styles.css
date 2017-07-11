@@ -6,3 +6,9 @@ body {
 .carousel {
   margin-bottom: 40px;
 }
+
+.clearFloat:after {
+  content: ' ';
+  display: table;
+  clear: both;
+}

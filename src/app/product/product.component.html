@@ -3,7 +3,7 @@
     <img src="http://placehold.it/320x150" alt="产品图片">
     <div class="caption">
       <h4 class="pull-right">{{ product.price }}</h4>
-      <h4><a href="">{{ product.pname }}</a></h4>
+      <h4><a href="" [routerLink]="['/productDetails', product.id]">{{ product.pname }}</a></h4>
       <p>{{ product.desc }}</p>
       <app-stars [rating]="product.rating"></app-stars>
     </div>

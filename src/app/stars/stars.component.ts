@@ -6,11 +6,13 @@ import {Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./stars.component.css']
 })
 export class StarsComponent implements OnInit {
-  @Input() rating: number;
+
+  @Input()
+  private rating: number;
+
   protected stars: boolean[];
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
     this.stars = [false, false, true, true, true];
