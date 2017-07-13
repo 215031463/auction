@@ -1,4 +1,4 @@
 <p>
-  <span class="pull-right">{{ rating }}</span>
-  <span *ngFor="let star of stars" [class.glyphicon-star-empty]="!star" class="glyphicon glyphicon-star"></span>
+  <span class="pull-right">{{ rating | number: '1.0-2' }}星</span>
+  <span *ngFor="let star of stars; let idx = index;" [class.glyphicon-star-empty]="!star" (click)="clickHandler(idx)" [style.cursor]="readonly?'normal':'pointer'" class="glyphicon glyphicon-star"></span>
 </p>

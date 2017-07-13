@@ -11,6 +11,10 @@ export class ProductDetailsComponent implements OnInit {
   private productId: number;
   public product: Product;
   public comments: Comment[];
+  public newRating = 5;
+  public newComment = '';
+  public isHidden = true;
+
   constructor (
     private routeInfo: ActivatedRoute,
     private productService: ProductService
@@ -24,4 +28,22 @@ export class ProductDetailsComponent implements OnInit {
     this.product = this.productService.getProduct(this.productId);
     this.comments = this.productService.getComments(this.productId);
   }
+
+  addComment(): void {
+    if (!this.newComment) {
+      window.alert('留言 多 说句话吧');
+      this.newRating = 5;
+      return;
+    }
+    let commentId = this.comments[this.comments.length - 1].id + Math.floor(Math.random() * 9);
+    let comment = new Comment(commentId, this.productId, new Date().toISOString(), 'xxxxx', this.newRating, this.newComment);
+    this.comments.unshift(comment);
+
+    this.product.rating = this.comments.map(comment => comment.rating).reduce((prev, current) => prev + current) / this.comments.length;
+
+    this.newRating = 5;
+    this.newComment = '';
+    this.isHidden = true;
+  }
+
 }

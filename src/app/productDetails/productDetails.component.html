@@ -7,10 +7,18 @@
       <p>{{ product?.desc }}</p>
     </div>
     <div>
-      <p class="pull-right">{{ comments?.length }}</p>
       <div>
         <app-stars [rating]="product.rating"></app-stars>
       </div>
+    </div>
+  </div>
+
+  <div class="well">
+    <button (click)="isHidden = !isHidden" class="btn btn-success">添加评论</button>
+    <div [hidden]="isHidden">
+      <app-stars [readonly]="false" [(rating)]="newRating"></app-stars>
+      <textarea [(ngModel)]="newComment" rows="" cols=""></textarea>
+      <button (click)="addComment()" class="btn btn-primary">提交评论</button>
     </div>
   </div>
 
