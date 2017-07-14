@@ -17,8 +17,6 @@ import { ProductDetailsComponent } from './productDetails/productDetails.compone
 import { HomeComponent } from './home/home.component';
 import { MultiplePipe } from './pipe/multiple.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
-import { QuoteComponent } from './quote/quote.component';
-import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +30,7 @@ import { OrderComponent } from './order/order.component';
     ProductDetailsComponent,
     HomeComponent,
     MultiplePipe,
-    FilterPipe,
-    QuoteComponent,
-    OrderComponent
+    FilterPipe
   ],
   imports: [
     BrowserModule,
