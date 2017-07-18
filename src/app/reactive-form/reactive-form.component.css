@@ -1,0 +1,5 @@
+.has-error {
+  color: lightcoral;
+  border: 1px solid lightcoral;
+  background-color: lightblue;
+}

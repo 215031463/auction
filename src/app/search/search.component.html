@@ -1,22 +1,23 @@
-<div class="search-box">
+<form class="search-box" [formGroup]="formModel" (submit)="onSubmit()">
   <div class="form-group">
     <label for="name" class="control-label">商品名称</label>
-    <input id="name" type="text" class="form-control" placeholder="输入菜品名称">
+    <input formControlName="title" id="name" type="text" class="form-control" placeholder="输入菜品名称">
+    <div>
+      <p [hidden]="!formModel.get('title').hasError('minlength')" [class.text-danger]="formModel.hasError('minlength', 'title')">商品名称最小长度为3个字符</p>
+    </div>
   </div>
   <div class="form-group">
     <label for="price" class="control-label">商品价格</label>
-    <input id="price" type="text" class="form-control" placeholder="输入菜品价格">
+    <input formControlName="price" id="price" type="text" class="form-control" placeholder="输入菜品价格">
+    <div class="text-danger" [hidden]="!formModel.hasError('positiveNum', 'price')">请输入正数</div>
   </div>
   <div class="form-group">
     <label for="types" class="control-label">商品类型</label>
-    <select name="" id="types" class="form-control">
-      <option value="">川菜</option>
-      <option value="">湘菜</option>
-      <option value="">粤菜</option>
-      <option value="">鲁菜</option>
+    <select formControlName="category" name="category" id="category" class="form-control">
+      <option *ngFor="let category of categories" value="">{{ category }}</option>
     </select>
   </div>
   <div class="form-group">
-    <button class="btn btn-info btn-block">搜 索</button>
+    <button [disabled]="!formModel.valid || formModel.untouched" type="submit" class="btn btn-info btn-block">搜 索</button>
   </div>
-</div>
+</form>

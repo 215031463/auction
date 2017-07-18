@@ -1,0 +1,31 @@
+<form [formGroup]="formModel" (submit)="onSubmit(formModel.value)">
+  <div>用户名：<input formControlName="userName" type="text"></div>
+   <div [hidden]="formModel.get('userName').pristine || formModel.get('userName').valid">
+    <div class=" bg-danger text-danger" [hidden]="!formModel.hasError('required','userName')">用户名必需填写</div>
+    <div class=" bg-danger text-danger" [hidden]="!formModel.hasError('minlength', 'userName')">用户名长度至少2个字符</div>
+    <div class=" bg-danger text-danger" [hidden]="!formModel.hasError('maxlength', 'userName')">用户名长度最多6个字符</div>
+   </div>
+  <div>手机号: <input formControlName="phone" type="text"></div>
+  <!-- <div [hidden]="!formModel.hasError('required', 'phone')">手机号必需填写</div> -->
+  <div [hidden]="formModel.get('phone').valid || formModel.get('phone').pristine">
+    <div [hidden]="!formModel.hasError('mobile', 'phone')">手机号格式不正确</div>
+  </div>
+  <div [hidden]="!formModel.get('phone').pending">正在校验手机合法性</div>
+  <div formGroupName="password">
+    <div>密码: <input formControlName="pass" type="password"></div>
+    <div [hidden]="!formModel.hasError('minlength', ['password', 'pass'])">密码长度至少为6位</div>
+    <div>确认密码: <input formControlName="passConfirm" type="password"></div>
+    <div [hidden]="!formModel.getError('equal', 'password')">{{ formModel.getError('equal', 'password')?.msg }}</div>
+  </div>
+  <div>
+    邮箱：
+    <ul formArrayName="emails">
+      <li *ngFor="let e of formModel.get('emails').controls; let i = index">
+        <input [formControlName]="i" type="email">
+      </li>
+    </ul>
+  </div>
+  <button (click)="addEmail()" type="button">添加邮箱</button><br>
+  <button type="submit">注册</button>
+</form>
+<div>{{ formModel.status }}</div>

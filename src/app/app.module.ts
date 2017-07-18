@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { ProductService } from './shared/product.service';
 
@@ -17,6 +17,12 @@ import { ProductDetailsComponent } from './productDetails/productDetails.compone
 import { HomeComponent } from './home/home.component';
 import { MultiplePipe } from './pipe/multiple.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
+import { FormComponent } from './form/form.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { MobileValidatorDirective } from './directives/mobile-validator.directive';
+import { EqualValidatorDirective } from './directives/equal-validator.directive';
+import { ProductListsComponent } from './product-lists/product-lists.component';
+import { PercentPipe } from './pipe/percent.pipe';
 
 @NgModule({
   declarations: [
@@ -30,13 +36,20 @@ import { FilterPipe } from './pipe/filter.pipe';
     ProductDetailsComponent,
     HomeComponent,
     MultiplePipe,
-    FilterPipe
+    FilterPipe,
+    FormComponent,
+    ReactiveFormComponent,
+    MobileValidatorDirective,
+    EqualValidatorDirective,
+    ProductListsComponent,
+    PercentPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [
     { provide: ProductService, useClass: ProductService }
