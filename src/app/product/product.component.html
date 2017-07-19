@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div *ngFor="let product of products | filter: 'pname': keywords" class="col-sm-4">
+<div *ngFor="let product of products | async" class="col-sm-4">
   <div class="thumbnail">
     <img src="http://placehold.it/320x150" alt="产品图片">
     <div class="caption">

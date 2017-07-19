@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit {
     // this.productId = parseInt(this.routeInfo.snapshot.params['id']);
 
     this.productId = Number(this.routeInfo.snapshot.params['id']);
-    this.product = this.productService.getProduct(this.productId);
+    this.productService.getProduct(this.productId).subscribe(data => this.product = data);
     this.comments = this.productService.getComments(this.productId);
   }
 
