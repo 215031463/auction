@@ -18,7 +18,6 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     // this.productService.getProducts().subscribe(data => this.products = data);
     this.products = this.productService.getProducts();
-    this.pnameFilter.valueChanges.debounceTime(500).subscribe(val => this.keywords = val);
   }
 
 }
