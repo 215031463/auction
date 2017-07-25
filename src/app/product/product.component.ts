@@ -10,13 +10,14 @@ import { Observable } from 'rxjs/Rx';
 })
 export class ProductComponent implements OnInit {
   private keywords: string;
-  public products: Product[];
+  public products: Observable<Product[]>;
   public pnameFilter: FormControl = new FormControl();
 
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(data => this.products = data);
+    // this.productService.getProducts().subscribe(data => this.products = data);
+    this.products = this.productService.getProducts();
     this.pnameFilter.valueChanges.debounceTime(500).subscribe(val => this.keywords = val);
   }
 
