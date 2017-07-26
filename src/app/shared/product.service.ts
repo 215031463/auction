@@ -1,11 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/RX';
 
 @Injectable()
 export class ProductService {
 
+  searchEvent: EventEmitter<ProductSearchParams> = new EventEmitter();
+
   constructor(private http: Http) { }
+
+  private encodeParams(params: ProductSearchParams): URLSearchParams {
+    return Object.keys(params)
+                 .filter(key => params[key])
+                 .reduce((sum: URLSearchParams, key: string) => {
+                   sum.append(key, params[key]);
+                   return sum;
+                 }, new URLSearchParams());
+  }
 
   public getProducts(): Observable<Product[]> {
     let myHeaders = new Headers();
@@ -34,6 +45,10 @@ export class ProductService {
     return categories;
   }
 
+  public search (params: ProductSearchParams): Observable<Product[]> {
+    return this.http.get('/api/products', {search: this.encodeParams(params)}).map((res: Response) => res.json());
+  }
+
 }
 
 export class Product {
@@ -58,6 +73,16 @@ export class Comment {
     public user: string,
     public rating: number,
     public content: string
+  ) { }
+
+}
+
+export class ProductSearchParams {
+
+  constructor (
+    public title: string,
+    public price: number,
+    public category: string
   ) { }
 
 }

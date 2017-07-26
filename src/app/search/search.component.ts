@@ -29,9 +29,8 @@ export class SearchComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.formModel.valid) {
-      console.log('已接收到表单数据...');
-      console.log(this.formModel.value);
+    if (!this.formModel.valid) {
+      this.productService.searchEvent.emit(this.formModel.value);
     }
   }
 

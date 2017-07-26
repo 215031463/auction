@@ -9,7 +9,6 @@ import { Observable } from 'rxjs/Rx';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  private keywords: string;
   public products: Observable<Product[]>;
   public pnameFilter: FormControl = new FormControl();
 
@@ -18,6 +17,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     // this.productService.getProducts().subscribe(data => this.products = data);
     this.products = this.productService.getProducts();
+    this.productService.searchEvent.subscribe(params => this.products = this.productService.search(params));
   }
 
 }
