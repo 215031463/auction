@@ -10,11 +10,17 @@ export class ProductService {
   constructor(private http: Http) { }
 
   private encodeParams(params: ProductSearchParams): URLSearchParams {
+    /* return Object.keys(params)
+                 .filter(key => params[key])
+                 .reduce((sum: string, key: string) => {
+                    sum += (key + '=' + params[key]);
+                    return sum;
+                 }, ''); */
     return Object.keys(params)
                  .filter(key => params[key])
                  .reduce((sum: URLSearchParams, key: string) => {
-                   sum.append(key, params[key]);
-                   return sum;
+                    sum.append(key, params[key]);
+                    return sum;
                  }, new URLSearchParams());
   }
 
