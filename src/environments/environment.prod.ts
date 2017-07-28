@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  weixinNumber: '这是生产环境的微信号'
 };

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ export class AppComponent {
 
   title = 'app';
 
-  constructor() { }
+  constructor() {
+    console.log('微信号是: ' + environment.weixinNumber);
+  }
 
 }

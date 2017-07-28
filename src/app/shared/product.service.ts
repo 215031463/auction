@@ -10,25 +10,28 @@ export class ProductService {
   constructor(private http: Http) { }
 
   private encodeParams(params: ProductSearchParams): URLSearchParams {
-    return Object.keys(params)
-                 .filter(key => params[key])
-                 .reduce((sum: URLSearchParams, key: string) => {
-                   sum.append(key, params[key]);
-                   return sum;
-                 }, new URLSearchParams());
+    return Object
+      .keys(params)
+      .filter(key => params[key])
+      .reduce((sum: URLSearchParams, key: string) => {
+        sum.set(key, params[key]);
+        console.log(sum);
+        console.log(String(sum));
+        return sum;
+      }, new URLSearchParams());
   }
 
   public getProducts(): Observable<Product[]> {
     let myHeaders = new Headers();
     myHeaders.append('authorization', 'base 123456');
-    return this.http.get('/api/products', {headers: myHeaders}).map((res: Response) => res.json());
+    return this.http.get('/api/products', { headers: myHeaders }).map((res: Response) => res.json());
   }
 
   public getProduct(id: number): Observable<Product> {
     return this.http.get('/api/product/' + id).map((res: Response) => res.json());
   }
 
-  public getComments (id: number): Observable<Comment[]> {
+  public getComments(id: number): Observable<Comment[]> {
     return this.http.get('/api/product/' + id + '/comments').map((res: Response) => res.json());
   }
 
@@ -45,11 +48,12 @@ export class ProductService {
     return categories;
   }
 
-  public search (params: ProductSearchParams): Observable<Product[]> {
-    return this.http.get('/api/products', {search: this.encodeParams(params)}).map((res: Response) => res.json());
+  public search(params: ProductSearchParams): Observable<Product[]> {
+    return this.http.get('/api/products', { search: this.encodeParams(params) }).map((res: Response) => res.json());
   }
 
 }
+
 
 export class Product {
 
@@ -79,7 +83,7 @@ export class Comment {
 
 export class ProductSearchParams {
 
-  constructor (
+  constructor(
     public title: string,
     public price: number,
     public category: string

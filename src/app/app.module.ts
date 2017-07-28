@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { ProductService } from './shared/product.service';
 
@@ -52,7 +53,8 @@ import { PercentPipe } from './pipe/percent.pipe';
     HttpModule
   ],
   providers: [
-    { provide: ProductService, useClass: ProductService }
+    { provide: ProductService, useClass: ProductService },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
